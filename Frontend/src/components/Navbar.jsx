@@ -21,12 +21,17 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+
 import {Link, useLocation, Outlet} from 'react-router-dom';
 
 const drawerWidth = 240;
 
 export default function Navbar(props) {
   const { window } = props;
+
+  const navigate = useNavigate();
 
   const location = useLocation();
   const path = location.pathname;
@@ -47,6 +52,13 @@ export default function Navbar(props) {
     if (!isClosing) {
       setMobileOpen(!mobileOpen);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+
+    navigate("/");
   };
 
   const drawer = (
@@ -116,9 +128,16 @@ export default function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Personal Expense Tracker
           </Typography>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -161,6 +180,7 @@ export default function Navbar(props) {
       >
         <Toolbar />
         <Outlet/>
+        
       </Box>
     </Box>
   );
