@@ -26,6 +26,8 @@ import PaidIcon from "@mui/icons-material/Paid";
 
 import "../Expenses.css";
 
+import.meta.env.VITE_API_URL
+
 const Income = () => {
   const [income, setIncome] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -67,7 +69,7 @@ const Income = () => {
 
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/income/?page=${page}`,
+          `${import.meta.env.VITE_API_URL}/api/income/?page=${page}`,
           {
             method: "GET",
             headers: {
@@ -110,7 +112,7 @@ const Income = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/income_categories/"
+          `${import.meta.env.VITE_API_URL}/api/income_categories/`
         );
 
         const data = await response.json();
@@ -135,7 +137,7 @@ const Income = () => {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/income/${id}/`,
+        `${import.meta.env.VITE_API_URL}/api/income/${id}/`,
         {
           method: "DELETE",
           headers: {
@@ -213,7 +215,6 @@ const Income = () => {
           spacing={2}
           alignItems="center"
         >
-
           <FormControl size="small" sx={{ minWidth: 100 }}>
 
             <Select
@@ -291,7 +292,6 @@ const Income = () => {
             <AddIncome
               onAddIncome={addIncome}
             />
-
           </div>
         </div>
       )}

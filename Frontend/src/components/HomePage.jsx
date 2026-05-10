@@ -25,6 +25,8 @@ import HouseIcon from "@mui/icons-material/House";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 
+import.meta.env.VITE_API_URL
+
 const Dashboard = () => {
   const [income, setIncome] = useState([]);
   const [expenses, setExpenses] = useState([]);
@@ -78,10 +80,10 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const [incomeRes, expenseRes] = await Promise.all([
-          fetch("http://127.0.0.1:8000/api/dashboard/income/", {
+          fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/income/`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://127.0.0.1:8000/api/dashboard/expenses/", {
+          fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/expenses/`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

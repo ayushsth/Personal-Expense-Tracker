@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import.meta.env.VITE_API_URL
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +17,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try{
-            const response = await fetch('https://personal-expense-tracker-5k66.onrender.com/api/token',{
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/token/`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

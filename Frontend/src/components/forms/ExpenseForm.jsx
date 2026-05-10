@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import.meta.env.VITE_API_URL
+
 const AddExpense = ({onAddExpense,editingExpense,onUpdateExpense}) =>{
     const [selectedCategory, setSelectedCategory] = useState('');
     const [amount, setAmount] = useState('');
@@ -11,7 +13,7 @@ const AddExpense = ({onAddExpense,editingExpense,onUpdateExpense}) =>{
     useEffect(() => {
         const fetchCategories = async() => {
             try{
-                const res = await fetch('http://127.0.0.1:8000/api/categories/');
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/categories/`);
                 const data = await res.json(); 
                 
                 setCategories(data)
@@ -41,7 +43,7 @@ const AddExpense = ({onAddExpense,editingExpense,onUpdateExpense}) =>{
 
             if (editingExpense) {
                 response = await fetch(
-                    `http://127.0.0.1:8000/api/expenses/${editingExpense.id}/`,
+                    `${import.meta.env.VITE_API_URL}/api/expenses/${editingExpense.id}/`,
                     {
                         method: 'PUT',
                         headers: {
@@ -58,7 +60,7 @@ const AddExpense = ({onAddExpense,editingExpense,onUpdateExpense}) =>{
                 );
             } else {
                 response = await fetch(
-                    'http://127.0.0.1:8000/api/expenses/',
+                    `${import.meta.env.VITE_API_URL}/api/expenses/`,
                     {
                         method: 'POST',
                         headers: {

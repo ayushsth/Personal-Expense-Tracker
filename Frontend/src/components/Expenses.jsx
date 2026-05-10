@@ -27,6 +27,8 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
+import.meta.env.VITE_API_URL
+
 const Expense = () => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,7 +66,7 @@ const Expense = () => {
 
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/expenses/?page=${page}`,
+          `${import.meta.env.VITE_API_URL}/api/expenses/?page=${page}`,
           {
             method: "GET",
             headers: {
@@ -107,7 +109,7 @@ const Expense = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/categories/"
+          `${import.meta.env.VITE_API_URL}/api/categories/`
         );
 
         const data = await response.json();
@@ -139,7 +141,7 @@ const Expense = () => {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/expenses/${id}/`,
+        `${import.meta.env.VITE_API_URL}/api/expenses/${id}/`,
         {
           method: "DELETE",
           headers: {

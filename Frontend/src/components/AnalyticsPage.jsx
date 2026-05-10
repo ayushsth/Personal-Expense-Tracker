@@ -6,6 +6,8 @@ import IncomePieChart from "./Charts/IncomePieChart";
 
 import "../HomePage.css";
 
+import.meta.env.VITE_API_URL
+
 const Analytics = () => {
     const [income, setIncome] = useState([]);
 
@@ -20,7 +22,7 @@ const Analytics = () => {
             try {
 
                 const response = await fetch(
-                    "http://127.0.0.1:8000/api/dashboard/income/",
+                    `${import.meta.env.VITE_API_URL}/api/dashboard/income/`,
                     {
                         method: "GET",
                         headers: {
@@ -58,7 +60,7 @@ const Analytics = () => {
             try {
 
                 const response = await fetch(
-                    "http://127.0.0.1:8000/api/dashboard/expenses/",
+                    `${import.meta.env.VITE_API_URL}/api/dashboard/expenses/`,
                     {
                         method: "GET",
                         headers: {

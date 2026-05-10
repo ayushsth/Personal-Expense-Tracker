@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import.meta.env.VITE_API_URL
+
 const AddIncome = ({onAddIncome,editingIncome,onUpdateIncome}) =>{
     const [selectedCategory, setSelectedCategory] = useState('');
     const [amount, setAmount] = useState('');
@@ -11,7 +13,7 @@ const AddIncome = ({onAddIncome,editingIncome,onUpdateIncome}) =>{
     useEffect(() => {
         const fetchCategories = async() => {
             try{
-                const res = await fetch('http://127.0.0.1:8000/api/income_categories/');
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/income_categories/`);
                 const data = await res.json(); 
                 
                 setCategories(data)
@@ -41,7 +43,7 @@ const AddIncome = ({onAddIncome,editingIncome,onUpdateIncome}) =>{
 
             if (editingIncome) {
                 response = await fetch(
-                    `http://127.0.0.1:8000/api/income/${editingIncome.id}/`,
+                    `${import.meta.env.VITE_API_URL}/api/income/${editingIncome.id}/`,
                     {
                         method: 'PUT',
                         headers: {
@@ -58,7 +60,7 @@ const AddIncome = ({onAddIncome,editingIncome,onUpdateIncome}) =>{
                 );
             } else {
                 response = await fetch(
-                    'http://127.0.0.1:8000/api/income/',
+                    `${import.meta.env.VITE_API_URL}/api/income/`,
                     {
                         method: 'POST',
                         headers: {

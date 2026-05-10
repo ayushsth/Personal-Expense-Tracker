@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import.meta.env.VITE_API_URL
+
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,8 +23,7 @@ const Register = () => {
         }
 
         try{
-            // const response = await fetch('http://127.0.0.1:8000/api/register/',{
-            const response = await fetch('https://personal-expense-tracker-5k66.onrender.com/api/register/',{
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register/`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ const Register = () => {
             
             console.log("User Registered: ", data)
 
-            const loginResponse = await fetch('http://127.0.0.1:8000/api/token/',{
+            const loginResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/token/`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
