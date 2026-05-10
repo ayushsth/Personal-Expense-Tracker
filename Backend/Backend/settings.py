@@ -23,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = os.environ.get("django-insecure-rcwi3^@u!2g!nc!$59l%dn4nmkn^y&q#4$2vsy&y!e=^qlr)!h")
-
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -83,10 +81,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:5173',
-# ]
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "Backend.urls"
@@ -113,12 +107,6 @@ WSGI_APPLICATION = "Backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.environ.get('DATABASE_URL')
-#     )
-# }
 
 DATABASES = {
     "default": {
